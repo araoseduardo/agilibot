@@ -14,9 +14,17 @@ print("hola")
 response = requests.get("https://api.tronalddump.io/random/quote")
 print(response.json()['value'])
 
+
 def crear(bot, update, pass_chat_data=True):
 	evento={}
+	detalles=""
+	msg=update.message.text
+	b = msg.split(' ')[2:]
+	for word in b:
+		detalles += word
+		detalles += ' '
 	evento["nombre"]=update.message.text.split(" ")[1]
+	evento["detalles"]=detalles
 	evento["asistentes"]=0
 	lista_de_eventos.append(evento)
 	bot.sendMessage(chat_id=update.message.chat_id, text="Evento creado!")
@@ -26,6 +34,7 @@ def eventos(bot, update, pass_chat_data=True):
 	for i in range(len(lista_de_eventos)):
 		mensaje+=str(i+1)+". "+lista_de_eventos[i]["nombre"]+"\n"
 		mensaje+="Asistentes: "+str(lista_de_eventos[i]["asistentes"])+"\n"
+		mensaje+="Detalles: "+lista_de_eventos[i]["detalles"]+"\n"
 		mensaje+="\n"
 	bot.sendMessage(chat_id=update.message.chat_id, text=mensaje)
 
