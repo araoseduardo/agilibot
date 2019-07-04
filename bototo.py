@@ -34,6 +34,10 @@ def memetramp(bot, update, pass_chat_data=True):
 	s = "http://cdn.pichunter.com/352/2/3522658/3522658_"+ str(r) +"_o.jpg"
 	bot.sendPhoto(chat_id= update.message.chat_id, photo = s)
 
+def echo(bot,update,pass_chat_data=True):
+	msg=update.message.chat_id
+	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
+
 start_handler = CommandHandler("start", start)
 tramp_handler = CommandHandler("tramp", tramp)
 memetramp_handler = CommandHandler("memetramp", memetramp)
