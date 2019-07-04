@@ -81,6 +81,7 @@ def echo(bot,update,pass_chat_data=True):
 
 	bot.sendMessage(chat_id=update.message.chat_id, text=a)
 
+borrar_handler = CommandHandler("borrar", borrar)
 start_handler = CommandHandler("start", start)
 crear_handler = CommandHandler("crear", crear)
 eventos_handler = CommandHandler("eventos", eventos)
@@ -92,6 +93,8 @@ listener_handler = MessageHandler(Filters.text, listener)
 
 dispatcher = bototo_updater.dispatcher
 
+
+dispatcher.add_handler(borrar_handler)
 dispatcher.add_handler(unirse_handler)
 dispatcher.add_handler(crear_handler)
 dispatcher.add_handler(eventos_handler)
