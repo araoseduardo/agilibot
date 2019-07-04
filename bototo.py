@@ -35,8 +35,13 @@ def memetramp(bot, update, pass_chat_data=True):
 	bot.sendPhoto(chat_id= update.message.chat_id, photo = s)
 
 def echo(bot,update,pass_chat_data=True):
+	a = ''
 	msg=update.message.text
-	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
+	b = msg.split(' ')[1:]
+	for word in b:
+		a += ' '
+		a += word
+	bot.sendMessage(chat_id=update.message.chat_id, text=a)
 
 start_handler = CommandHandler("start", start)
 tramp_handler = CommandHandler("tramp", tramp)
