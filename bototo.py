@@ -8,9 +8,27 @@ import numpy
 bototo = telegram.Bot(token="690440067:AAG6YMG5UjNz14nmnSbQFZEVuoc6KegKlL8")
 bototo_updater = Updater(bototo.token)
 
+lista_de_eventos=[]
+
 print("hola")
 response = requests.get("https://api.tronalddump.io/random/quote")
 print(response.json()['value'])
+
+def crear(bot, update, pass_chat_data=True):
+	evento={}
+	evento["nombre"]=update.message.text.split(" ")[1]
+	evento["asistentes"]=0
+	lista_de_eventos.append(evento)
+	bot.sendMessage(chat_id=update.message.chat_id, text="Evento creado!")
+
+def eventos(bot, update, pass_chat_data=True):
+	mensaje=""
+	for i in range(len(lista_de_eventos)):
+		mensaje+=str(i+1)+". "+lista_de_eventos[i]["nombre"]+"\n"
+		mensaje+="Asistentes: "+str(lista_de_eventos[i]["asistentes"])+"\n"
+		mensaje+="\n"
+	bot.sendMessage(chat_id=update.message.chat_id, text=mensaje)
+
 
 def listener(bot, update):
 	id = update.message.chat_id
@@ -45,6 +63,8 @@ def echo(bot,update,pass_chat_data=True):
 	bot.sendMessage(chat_id=update.message.chat_id, text=a)
 
 start_handler = CommandHandler("start", start)
+crear_handler = CommandHandler("crear", crear)
+eventos_handler = CommandHandler("eventos", eventos)
 tramp_handler = CommandHandler("tramp", tramp)
 echo_handler = CommandHandler("echo", echo)
 memetramp_handler = CommandHandler("memetramp", memetramp)
@@ -52,6 +72,9 @@ listener_handler = MessageHandler(Filters.text, listener)
 
 dispatcher = bototo_updater.dispatcher
 
+
+dispatcher.add_handler(crear_handler)
+dispatcher.add_handler(eventos_handler)
 dispatcher.add_handler(echo_handler)
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(listener_handler)
