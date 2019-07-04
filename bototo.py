@@ -57,6 +57,8 @@ def echo(bot,update,pass_chat_data=True):
 	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
 
 start_handler = CommandHandler("start", start)
+crear_handler = CommandHandler("crear", crear)
+eventos_handler = CommandHandler("eventos", eventos)
 tramp_handler = CommandHandler("tramp", tramp)
 echo_handler = CommandHandler("echo", echo)
 memetramp_handler = CommandHandler("memetramp", memetramp)
@@ -64,6 +66,9 @@ listener_handler = MessageHandler(Filters.text, listener)
 
 dispatcher = bototo_updater.dispatcher
 
+
+dispatcher.add_handler(crear_handler)
+dispatcher.add_handler(eventos_handler)
 dispatcher.add_handler(echo_handler)
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(listener_handler)
