@@ -8,9 +8,25 @@ import numpy
 bototo = telegram.Bot(token="690440067:AAG6YMG5UjNz14nmnSbQFZEVuoc6KegKlL8")
 bototo_updater = Updater(bototo.token)
 
+lista_de_eventos=[]
+
 print("hola")
 response = requests.get("https://api.tronalddump.io/random/quote")
 print(response.json()['value'])
+
+def crear(bot, update, pass_chat_data=True):
+	evento={}
+	evento["nombre"]=update.message.text.split(" ")[1]
+	evento["asistentes"]=0
+	lista_de_eventos.append(evento)
+
+def eventos(bot, update, pass_chat_data=True):
+	mensaje=""
+	for i in range(len(lista_de_eventos)):
+		mensaje+=str(i+1)+". "+lista_de_eventos[i]["nombre"]+"\n"
+		mensaje+="Asistentes: "+str(lista_de_eventos[i]["asistentes"])+"\n"
+		mensaje+="\n"
+
 
 def listener(bot, update):
 	id = update.message.chat_id
