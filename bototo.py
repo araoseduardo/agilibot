@@ -40,11 +40,13 @@ def echo(bot,update,pass_chat_data=True):
 
 start_handler = CommandHandler("start", start)
 tramp_handler = CommandHandler("tramp", tramp)
+echo_handler = CommandHandler("echo", echo)
 memetramp_handler = CommandHandler("memetramp", memetramp)
 listener_handler = MessageHandler(Filters.text, listener)
 
 dispatcher = bototo_updater.dispatcher
 
+dispatcher.add_handler(echo_handler)
 dispatcher.add_handler(start_handler)
 dispatcher.add_handler(listener_handler)
 dispatcher.add_handler(tramp_handler)
