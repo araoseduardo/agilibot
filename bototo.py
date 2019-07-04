@@ -19,6 +19,7 @@ def crear(bot, update, pass_chat_data=True):
 	evento["nombre"]=update.message.text.split(" ")[1]
 	evento["asistentes"]=0
 	lista_de_eventos.append(evento)
+	bot.sendMessage(chat_id=update.message.chat_id, text="Evento creado!")
 
 def eventos(bot, update, pass_chat_data=True):
 	mensaje=""
@@ -26,6 +27,7 @@ def eventos(bot, update, pass_chat_data=True):
 		mensaje+=str(i+1)+". "+lista_de_eventos[i]["nombre"]+"\n"
 		mensaje+="Asistentes: "+str(lista_de_eventos[i]["asistentes"])+"\n"
 		mensaje+="\n"
+	bot.sendMessage(chat_id=update.message.chat_id, text=mensaje)
 
 
 def listener(bot, update):
