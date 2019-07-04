@@ -35,7 +35,7 @@ def memetramp(bot, update, pass_chat_data=True):
 	bot.sendPhoto(chat_id= update.message.chat_id, photo = s)
 
 def echo(bot,update,pass_chat_data=True):
-	msg=update.message.chat_id
+	msg=update.message.text
 	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
 
 start_handler = CommandHandler("start", start)
