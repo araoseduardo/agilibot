@@ -45,7 +45,7 @@ def unirse(bot, update, pass_chat_data=True):
 
 def borrar(bot, update, pass_chat_data=True):
 	id=int(update.message.text.split(" ")[1])-1
-	lista_de_eventos.remove(id)
+	del lista_de_eventos[id]
 	msg="Evento eliminado"
 	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
 
