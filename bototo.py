@@ -29,6 +29,11 @@ def eventos(bot, update, pass_chat_data=True):
 		mensaje+="\n"
 	bot.sendMessage(chat_id=update.message.chat_id, text=mensaje)
 
+def unirse(bot, update, pass_chat_data=True):
+	id=int(update.message.text)-1
+	lista_de_eventos[id]["asistentes"]+=1
+	msg="Unido! Por ahora hay "+str(lista_de_eventos[id]["asistentes"])+" asistentes en el evento "+lista_de_eventos[id]["nombre"]
+	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
 
 def listener(bot, update):
 	id = update.message.chat_id
@@ -59,6 +64,7 @@ def echo(bot,update,pass_chat_data=True):
 start_handler = CommandHandler("start", start)
 crear_handler = CommandHandler("crear", crear)
 eventos_handler = CommandHandler("eventos", eventos)
+unirse_handler = CommandHandler("unirse",unirse)
 tramp_handler = CommandHandler("tramp", tramp)
 echo_handler = CommandHandler("echo", echo)
 memetramp_handler = CommandHandler("memetramp", memetramp)
@@ -66,7 +72,7 @@ listener_handler = MessageHandler(Filters.text, listener)
 
 dispatcher = bototo_updater.dispatcher
 
-
+dispatcher.add_handler(unirse_handler)
 dispatcher.add_handler(crear_handler)
 dispatcher.add_handler(eventos_handler)
 dispatcher.add_handler(echo_handler)
