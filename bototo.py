@@ -14,7 +14,6 @@ print("hola")
 response = requests.get("https://api.tronalddump.io/random/quote")
 print(response.json()['value'])
 
-
 def crear(bot, update, pass_chat_data=True):
 	evento={}
 	detalles=""
@@ -42,6 +41,12 @@ def unirse(bot, update, pass_chat_data=True):
 	id=int(update.message.text.split(" ")[1])-1
 	lista_de_eventos[id]["asistentes"]+=1
 	msg="Unido! Por ahora hay "+str(lista_de_eventos[id]["asistentes"])+" asistentes en el evento "+lista_de_eventos[id]["nombre"]
+	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
+
+def borrar(bot, update, pass_chat_data=True):
+	id=int(update.message.text.split(" ")[1])-1
+	lista_de_eventos.remove(id)
+	msg="Evento eliminado"
 	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
 
 def listener(bot, update):
