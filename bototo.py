@@ -30,7 +30,7 @@ def eventos(bot, update, pass_chat_data=True):
 	bot.sendMessage(chat_id=update.message.chat_id, text=mensaje)
 
 def unirse(bot, update, pass_chat_data=True):
-	id=int(update.message.text)-1
+	id=int(update.message.text.split(" ")[1])-1
 	lista_de_eventos[id]["asistentes"]+=1
 	msg="Unido! Por ahora hay "+str(lista_de_eventos[id]["asistentes"])+" asistentes en el evento "+lista_de_eventos[id]["nombre"]
 	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
