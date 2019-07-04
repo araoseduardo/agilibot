@@ -41,6 +41,7 @@ def echo(bot,update,pass_chat_data=True):
 	for word in b:
 		a += ' '
 		a += word
+
 	bot.sendMessage(chat_id=update.message.chat_id, text=a)
 
 start_handler = CommandHandler("start", start)
