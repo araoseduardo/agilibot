@@ -71,10 +71,17 @@ def salirse(bot, update, pass_chat_data=True):
 
 
 def borrar(bot, update, pass_chat_data=True):
+<<<<<<< HEAD
     id=int(update.message.text.split(" ")[1])-1
     del lista_de_eventos[id]
     msg="Evento eliminado"
     bot.sendMessage(chat_id=update.message.chat_id, text=msg)
+=======
+	id=int(update.message.text.split(" ")[1])-1
+	del lista_de_eventos[id]
+	msg="Evento eliminado"
+	bot.sendMessage(chat_id=update.message.chat_id, text=msg)
+>>>>>>> 1b7541aa298faff0ae90b82969d0bf47192833a0
 
 
 def listener(bot, update):
