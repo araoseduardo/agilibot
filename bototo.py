@@ -5,7 +5,7 @@ import requests
 import json
 import numpy
 
-bototo = telegram.Bot(token="710400482:AAH_GTahoZlqDqxWyEXKq-fmYSmqDd8nBqI")
+bototo = telegram.Bot(token="")
 bototo_updater = Updater(bototo.token)
 
 lista_de_eventos=[]
